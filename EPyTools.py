@@ -11,6 +11,7 @@ such as filling out forms or clicking buttons.
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import requests
 import platform
+import sys
 
 from selenium import webdriver
 
@@ -32,19 +33,21 @@ def main():
                         help="Displays information and dependencies"
                         )
 
-    # parser.add_argument("path",
-    #                     action="path", path="xlsutils",
-    #                     help="Read and display data from \"xlsx\" file")
+    parser.add_argument("--username", "-u", metavar="USERNAME",
+                        action="store",
+                        help="Username or email for login to emispendis Kemenag")
+
+    parser.add_argument("--password", "-p", metavar="PASSWORD",
+                        action="store",
+                        help="Password for login to emispendis Kemenag")
 
     args = parser.parse_args()
 
-    # path = xlsutils.readData(
-    #     "/home/jarvis/Sources/emi_selen/dd.xlsx", "TP", 1, 1)
-    import utils
-    read = utils.xlsutils.readData(
-        "/home/jarvis/Sources/emi_selen/dd.xlsx", "TP", 2, 2)
-    value = read
-    print(value)
+    if args.username and args.password is None:
+        print("Username or password can't empty")
+        sys.exit(1)
+    else:
+        print("ok")
 
 
 if __name__ == "__main__":
