@@ -43,6 +43,8 @@ def main():
 
     args = parser.parse_args()
 
+    print(args.username, args.password)
+
     if args.username and args.password is None:
         print("Username or password can't empty")
         sys.exit(1)
