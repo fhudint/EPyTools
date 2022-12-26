@@ -1,1 +1,5 @@
 sherlock/
+{profile}/
+__pycache__/
+utils/__pycache__/
+fhudint/

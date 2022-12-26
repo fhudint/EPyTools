@@ -12,6 +12,8 @@ from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import requests
 import platform
 import sys
+import utils
+import os
 
 from selenium import webdriver
 
@@ -20,6 +22,25 @@ __version__ = "0.0.1"
 
 
 def main():
+
+    print("Path at terminal when executing this file")
+    print(os.getcwd() + "\n")
+
+    print("This file path, relative to os.getcwd()")
+    print(__file__ + "\n")
+
+    print("This file full path (following symlinks)")
+    full_path = os.path.realpath(__file__)
+    print(full_path + "\n")
+
+    print("This file directory and name")
+    path, filename = os.path.split(full_path)
+    print(path + ' --> ' + filename + "\n")
+
+    print("This file directory only")
+    print(os.path.dirname(full_path))
+
+
     version_string = f"%(prog)s {__version__}\n" + \
         f"{requests.__description__}:  {requests.__version__}\n" + \
         f"Python:  {platform.python_version()}"
@@ -40,6 +61,14 @@ def main():
     parser.add_argument("--password", "-p", metavar="PASSWORD",
                         action="store",
                         help="Password for login to emispendis Kemenag")
+    
+    parser.add_argument("--browser", "-b",
+                        action="store", #default="Chrome",
+                        help="Browser to use for EPyTools")
+    
+    parser.add_argument("--path",
+                        action="store", help="test path")
+
 
     args = parser.parse_args()
 
@@ -48,7 +77,12 @@ def main():
         sys.exit(1)
     else:
         print("ok")
-
+    if args.browser is not None:
+        print("Use optional browser")
+        utils.browser.chromeBrowser(args.browser)
+    if args.path is not None:
+        path_stat = os.path
+        print (path_stat)
 
 if __name__ == "__main__":
     main()
