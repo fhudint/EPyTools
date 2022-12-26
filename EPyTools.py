@@ -40,7 +40,6 @@ def main():
     print("This file directory only")
     print(os.path.dirname(full_path))
 
-
     version_string = f"%(prog)s {__version__}\n" + \
         f"{requests.__description__}:  {requests.__version__}\n" + \
         f"Python:  {platform.python_version()}"
@@ -61,14 +60,13 @@ def main():
     parser.add_argument("--password", "-p", metavar="PASSWORD",
                         action="store",
                         help="Password for login to emispendis Kemenag")
-    
+
     parser.add_argument("--browser", "-b",
-                        action="store", #default="Chrome",
+                        action="store",  # default="Chrome",
                         help="Browser to use for EPyTools")
-    
+
     parser.add_argument("--path",
                         action="store", help="test path")
-
 
     args = parser.parse_args()
 
@@ -84,7 +82,8 @@ def main():
         utils.browser.chromeBrowser(args.browser)
     if args.path is not None:
         path_stat = os.path
-        print (path_stat)
+        print(path_stat)
+
 
 if __name__ == "__main__":
     main()
